@@ -1,0 +1,75 @@
+# Node
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Build
+/dist/
+/build/
+
+# Environment
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.db
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg-info/
+*.egg
+*.bak
+*.swp
+
+# Django
+/staticfiles/
+/media/
+/db.sqlite3
+
+# OS
+*.swp
+*.swo
+
+# Misc
+*.bak
+*.tmp
+*.temp
+
+# Test
+coverage/
+htmlcov/
+
+# Frontend
+chatire-frontend/node_modules/
+chatire-frontend/dist/
+
+# Backend
+chatire-backend/__pycache__/
+chatire-backend/db.sqlite3
+chatire-backend/staticfiles/
+chatire-backend/media/
+chatire-backend/*.pyc
+chatire-backend/*.pyo
+chatire-backend/*.pyd
+chatire-backend/*.egg-info/
+chatire-backend/*.egg
+chatire-backend/*.bak
+chatire-backend/*.swp
+chatire-backend/coverage/
+chatire-backend/htmlcov/
+chatire-backend/.env
