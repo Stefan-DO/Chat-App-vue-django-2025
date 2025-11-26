@@ -26,6 +26,8 @@
 </template>
 
 <script setup>
+
+
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
@@ -40,18 +42,23 @@ const token = localStorage.getItem('app_auth_token')
 const username = localStorage.getItem('username')
 const sessionStarted = ref(false)
 
+
+let ws = null
+
 function connectWebSocket() {
-  ws = new WebSocket(`ws://localhost:8000/ws/chat/${chatUri.value}/`)
+  ws = new WebSocket(`ws://localhost:8000/ws/chat/${chatUri.value}`)
   ws.onopen = () => console.log('WebSocket connected')
-  ws.onmessage = e => {
-    const data = JSON.parse(e.data)
+
+  ws.onmessage = (event) => {
+    const data = JSON.parse(event.data)
     messages.value.push({
       message: data.message,
-      user: { username: data.username }
+      user: { username: data.username },
     })
   }
-}
 
+  ws.onclose = () => console.log('WebSocket closed')
+}
 
 onMounted(async () => {
   try {
@@ -112,19 +119,17 @@ async function fetchChatSessionHistory() {
 async function sendMessage() {
   const text = input.value.trim()
   if (!text) return
-  try {
-    const res = await axios.post(
-      `http://localhost:8000/chat/sessions/${chatUri.value}/messages/`,
-      { message: text },
-      { headers: { Authorization: `Token ${token}` } }
-    )
-    messages.value.push(res.data)
+
+  // Send via WebSocket
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    ws.send(JSON.stringify({ message: text, username }))
     input.value = ''
-  } catch (err) {
-    console.error('Error sending message:', err)
-    alert('Could not send message. Please try again.')
+  } else {
+    alert('WebSocket not connected. Reconnecting...')
+    connectWebSocket()
   }
 }
+
 </script>
 
 <style scoped>
