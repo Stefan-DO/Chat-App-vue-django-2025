@@ -23,6 +23,14 @@ pip install -r requirements.txt
 cd chatire-backend
 python manage.py migrate
 python manage.py createsuperuser
+
+Before running the server, copy the example env into place and set a secure secret key:
+
+```powershell
+cd chatire-backend
+copy .env.example .env
+# Edit .env and replace DJANGO_SECRET_KEY with a generated secret
+``` 
 ```
 
 4. Start the development server (choose one):
