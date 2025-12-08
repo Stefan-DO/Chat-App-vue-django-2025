@@ -74,3 +74,5 @@ chatire-backend/*.swp
 chatire-backend/coverage/
 chatire-backend/htmlcov/
 chatire-backend/.env
+# Track the example env so contributors have a template
+!chatire-backend/.env.example
