@@ -24,11 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Load environment variables from a .env file in the project root (chatire-backend/.env)
 load_dotenv(Path(__file__).resolve().parent.parent / '.env')
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# Read from environment variable `DJANGO_SECRET_KEY`. Falls back to the existing dev key when not set.
 SECRET_KEY = os.getenv(
-    'DJANGO_SECRET_KEY',
-    'django-insecure-3r_dj9j0oc=#c+en0(!02c^^8r)7k=r4t2oy()i)84r&ku%0km'
+    'DJANGO_SECRET_KEY',  
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
