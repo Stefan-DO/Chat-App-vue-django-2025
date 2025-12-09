@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 from pathlib import Path
 from corsheaders.defaults import default_headers
+from dotenv import load_dotenv
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -19,8 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3r_dj9j0oc=#c+en0(!02c^^8r)7k=r4t2oy()i)84r&ku%0km'
+# Load environment variables from a .env file in the project root (chatire-backend/.env)
+load_dotenv(Path(__file__).resolve().parent.parent / '.env')
+
+SECRET_KEY = os.getenv(
+    'DJANGO_SECRET_KEY',  
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

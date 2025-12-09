@@ -87,7 +87,7 @@ html, body {
   letter-spacing: 3px;
   animation: flicker 2s infinite;
 }
-
+ 
 @keyframes flicker {
   0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
     opacity: 1;
